@@ -1,0 +1,31 @@
+
+    .container{
+      text-align: center;
+    }
+    
+    .chatbox{
+        position:fixed;
+        right:20px;
+        bottom:20px;
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        z-index:1000
+    }
+    .chatbtn{display:flex;
+        align-items:center;
+        gap:6px;
+        padding:10px 14px;
+        border-radius:30px;
+        font-size:14px;
+        color:#fff;
+        cursor:pointer;
+        box-shadow:0 2px 6px rgba(0,0,0,.2)}
+    .reward{
+        background:#5cb85c
+    }
+    .support{
+        background:#28a745
+    }
+
+
