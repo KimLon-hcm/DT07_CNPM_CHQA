@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>G9sport</title>
+    <link href="../CSS/bootstrap.min.css" rel="stylesheet" />
+    <link href="../CSS/Login.css" rel="stylesheet" />
+    <link href="../CSS/navbar.css" rel="stylesheet" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"/>
+  </head>
+  <!-- Phần navbar và footer lặp lại như Trang Home-->
+  <body>
+    
+  <!-- top bar -->
+
+
+  
+  <div class="topbar fixed-top" style="z-index: 1030;"> 
+    AUTOMATIC CODE: <b>SEP20JS</b> | GIÀY/TRANG SỨC GIẢM 20% KHI MUA KÈM TÚI XÁCH <a href="#">NGUYÊN GIÁ</a>
+  </div>
+
+  <!-- navbar -->
+  <nav id="mainNav" class="navbar navbar-expand-lg  fixed-top " style="top:70px; height: 80px; z-index: 1030;">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="../html/HOME.html">OWE</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+         </li>
+                                                <!-- MENU----->
+<li class="dropdown nav-item"> 
+    <a class=" nav-link" type="button"  
+id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" href="#">ÁO</a> 
+    <ul class="dropdown-menu p-4 " aria-labelledby="dropdownMenuButton"  > 
+        <li style="padding: 5px;"><a class="dropdown-item" href="#">Action</a></li> 
+        <li style="padding: 5px;"><a class="dropdown-item" href="#">Another action</a></li> 
+        <li style="padding: 5px;"><a class="dropdown-item" href="#">Something else here</a></li> 
+         <li style="padding: 5px;"><a class="dropdown-item" href="#">Action</a></li> 
+        <li style="padding: 5px;"><a class="dropdown-item" href="#">Another action</a></li> 
+        <li style="padding: 5px;"><a class="dropdown-item" href="#">Something else here</a></li> 
+    </ul> 
+</li>
+
+<li class="dropdown nav-item"> 
+    <a class=" nav-link" type="button"  
+id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" href="#">QUẦN</a> 
+    <ul class="dropdown-menu p-4 " aria-labelledby="dropdownMenuButton"  > 
+        <li style="padding: 5px;"><a class="dropdown-item" href="#">Action</a></li> 
+        <li style="padding: 5px;"><a class="dropdown-item" href="#">Another action</a></li> 
+        <li style="padding: 5px;"><a class="dropdown-item" href="#">Something else here</a></li> 
+         <li style="padding: 5px;"><a class="dropdown-item" href="#">Action</a></li> 
+
+    </ul> 
+</li>
+
+<li class="dropdown nav-item"> 
+    <a class=" nav-link" type="button"  
+id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" href="#">PHỤ KIỆN</a> 
+    <ul class="dropdown-menu p-4 " aria-labelledby="dropdownMenuButton"  > 
+        <li style="padding: 5px;"><a class="dropdown-item" href="#">NÓN</a></li> 
+        <li style="padding: 5px;"><a class="dropdown-item" href="#">CÀ VẠT</a></li> 
+        <li style="padding: 5px;"><a class="dropdown-item" href="#">THẮT LƯNG</a></li> 
+         <li style="padding: 5px;"><a class="dropdown-item" href="#">Action</a></li> 
+        <li style="padding: 5px;"><a class="dropdown-item" href="#">Another action</a></li> 
+        <li style="padding: 5px;"><a class="dropdown-item" href="#">Something else here</a></li> 
+    </ul> 
+</li>
+        
+          <li class="nav-item"><a class="nav-link" href="#">FLASH SALE</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">STOCKISTS</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">VỀ OWE</a></li>
+        </ul>
+
+        </div>
+      </div>
+    </div>
+  </nav>
+
+<main>
+    <!-- Form đăng nhập -->
+    <div class="login-wrapper">
+      <div class="login-form">
+        <h2 class="text-center mb-4">Đăng Nhập</h2>
+        <form id="loginForm">
+          <!-- Ô nhập Email hoặc tên đăng nhập có thêm required -->
+          <div class="mb-3">
+            <label for="email" class="form-label"
+              >Email hoặc Tên đăng nhập</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="Nhập email"
+              required
+            />
+            <!-- Thông báo nếu chưa nhập -->
+            <div class="invalid-feedback">Vui lòng nhập email.</div>
+          </div>
+          <!-- Ô nhập mật khẩu có thêm required-->
+          <div class="mb-3">
+            <label for="password" class="form-label">Mật khẩu</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              placeholder="Nhập mật khẩu"
+              required
+            />
+            <!-- Thông báo nếu chưa nhập -->
+            <div class="invalid-feedback">Vui lòng nhập mật khẩu.</div>
+          </div>
+          <!-- Ghi nhớ và quên mật khẩu -->
+          <div class="d-flex justify-content-between mb-3">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="rememberMe" />
+              <label class="form-check-label" for="rememberMe">Ghi nhớ</label>
+            </div>
+            <a href="#" class="text-decoration-none">Quên mật khẩu?</a>
+          </div>
+          <!-- Nút đăng nhập -->
+          <button type="submit" class="btn btn-outline-dark
+     w-100">Đăng Nhập</button>
+          <!-- Link chuyển sang đăng ký -->
+          <p class="text-center mt-3">
+            Chưa có tài khoản?
+            <a href="../html/DangKy.html" class="text-decoration-none">Đăng ký</a>
+          </p>
+        </form>
+      </div>
+    </div>
+ 
+ </main>
+<footer class="bg-light text-dark pt-5 pb-4 mt-5 border-top">
+  <div class="container">
+    <div class="row">
+      <!-- Liên kết -->
+      <div class="col-md-4 mb-4">
+        <h6 class="fw-bold mb-3">LIÊN KẾT</h6>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-dark text-decoration-none d-block mb-2">Tìm kiếm</a></li>
+          <li><a href="#" class="text-dark text-decoration-none d-block mb-2">Liên hệ</a></li>
+          <li><a href="#" class="text-dark text-decoration-none d-block mb-2">Vận chuyển</a></li>
+          <li><a href="#" class="text-dark text-decoration-none d-block mb-2">Đổi hàng</a></li>
+          <li><a href="#" class="text-dark text-decoration-none d-block">Chính sách bảo mật</a></li>
+        </ul>
+      </div>
+
+      <!-- Fifth -->
+      <div class="col-md-4 mb-4 text-center">
+        <h6 class="fw-bold mb-3">OWE</h6>
+        <p class="small text-muted">
+          THE SPIRIT OF BEING IN THE MIDDLE OF SOMETHING,<br>
+          EMBRACING ALL THE HIGH AND LOW OF LIFE AS<br>
+          ELEMENTARY BEAUTY.
+        </p>
+        <p class="fw-bold">0 1 2 3 4 5 6 7 8 9 10</p>
+        <p class="fst-italic">"IN THE MIDDLE OF SOMETHING"</p>
+      </div>
+
+      <!-- Liên hệ -->
+      <div class="col-md-4 mb-4">
+        <h6 class="fw-bold mb-3">LIÊN HỆ</h6>
+        <p class="mb-1"><strong>Email:</strong> <a href="mailto:contact@chautfifth.com" class="text-dark text-decoration-none">contact@chautfifth.com</a></p>
+        <p class="mb-1"><strong>Điện thoại:</strong> <a href="tel:0336174371" class="text-dark text-decoration-none">0336174371</a> (7.30AM - 9.30PM)</p>
+        <p class="mb-1">140 Lê Trọng Tấn, Tây Thạnh, Tân Phú, Hồ Chí Minh 700000, Việt Nam </p>
+
+
+        
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col text-center">
+        <small class="text-muted">© 2025 - CHAUTFIFTH. All rights reserved.</small>
+      </div>
+    </div>
+  </div>
+</footer>
+    </footer>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- Nhúng JavaScript phần localStorage -->
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const loginForm = document.getElementById("loginForm");
+        // Xử lý khi form được submit
+        loginForm.addEventListener("submit", function (e) {
+          e.preventDefault(); // Ngăn chặn reload trang
+          // Lấy dữ liệu nhập vào
+          const emailInput = loginForm.querySelector('input[name="email"]');
+          const passwordInput = loginForm.querySelector(
+            'input[name="password"]'
+          );
+
+          const username = emailInput.value.trim();
+          const password = passwordInput.value.trim();
+          // Lấy danh sách người dùng từ localStorage (đã đăng ký trước đó)
+          const users = JSON.parse(localStorage.getItem("users")) || [];
+          // Tìm người dùng trùng username/email và mật khẩu
+          const user = users.find(
+            (u) =>
+              (u.username === username || u.email === username) &&
+              u.password === password
+          );
+          // Nếu tìm thấy => đăng nhập thành công
+          if (user) {
+            alert("Đăng nhập thành công!");
+
+            localStorage.setItem("currentUser", JSON.stringify(user));
+
+            window.location.href = "Home.html"; // chuyển hướng sau khi đăng nhập
+          } else {
+            // Nếu không đúng thì thông báo lỗi
+            alert("Tên đăng nhập hoặc mật khẩu không đúng!");
+          }
+        });
+      });
+    </script>
+    <script src="../JS/jsDangNhap.js"></script>
+  </body>
+</html>
