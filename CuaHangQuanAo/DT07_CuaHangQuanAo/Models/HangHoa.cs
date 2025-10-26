@@ -15,7 +15,7 @@ public partial class HangHoa
 
     public int? IdthuongHieu { get; set; }
 
-    public bool? TrangThai { get; set; }
+    public bool TrangThai { get; set; }
 
     public virtual ICollection<HangHoaBienThe> HangHoaBienThes { get; set; } = new List<HangHoaBienThe>();
 
