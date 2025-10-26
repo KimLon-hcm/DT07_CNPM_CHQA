@@ -86,7 +86,7 @@ CREATE TABLE HangHoa (
     FOREIGN KEY (IDLoaiHang) REFERENCES LoaiHang(IDLoaiHang),
     FOREIGN KEY (IDThuongHieu) REFERENCES ThuongHieu(IDThuongHieu)
 );
-
+select * from HangHoa
 -- 10. Bảng Địa Chỉ của Người Dùng (Linking Table)
 CREATE TABLE DiaChi_NguoiDung (
     IDNguoiDung INT,
@@ -176,7 +176,10 @@ INSERT INTO LoaiHang (TenLoaiHang) VALUES
 (N'Áo Thun'),
 (N'Áo Sơ Mi'),
 (N'Quần Jeans'),
-(N'Áo Khoác');
+(N'Váy')
+select * from Loaihang
+delete from LoaiHang
+where IDLoaiHang = 9
 
 -- 2. Bảng Thương Hiệu (Brand)
 PRINT '2. Inserting data into ThuongHieu...';
@@ -186,6 +189,7 @@ INSERT INTO ThuongHieu (TenThuongHieu) VALUES
 (N'H&M'),
 (N'Levi''s'),
 (N'Adidas');
+select * from ThuongHieu
 
 -- 3. Bảng Màu Sắc (Color)
 PRINT '3. Inserting data into MauSac...';
@@ -195,7 +199,7 @@ INSERT INTO MauSac (TenMau, MaMauHex) VALUES
 (N'Xanh Navy', '#000080'),
 (N'Beige', '#F5F5DC'),
 (N'Đỏ', '#FF0000');
-
+select * from MauSac
 -- 4. Bảng Kích Thước (Size)
 PRINT '4. Inserting data into KichThuoc...';
 INSERT INTO KichThuoc (TenKichThuoc) VALUES
@@ -211,7 +215,7 @@ INSERT INTO NguoiDung (HoTen, Email, SoDienThoai, MatKhauHash, LoaiTK) VALUES
 (N'Trần Thị Bích', 'bich.tran@example.com', '0987654321', 'hashed_password_456', 'Customer'),
 (N'Lê Minh Cường', 'cuong.le@example.com', '0905112233', 'hashed_password_789', 'Customer'),
 (N'Phạm Thị Dung', 'dung.pham@example.com', '0334556677', 'hashed_password_012', 'Customer');
-
+select * from NguoiDung
 -- 6. Bảng Địa Chỉ (Address)
 PRINT '6. Inserting data into DiaChi...';
 INSERT INTO DiaChi (TinhThanh, QuanHuyen, PhuongXa, ChiTiet) VALUES
