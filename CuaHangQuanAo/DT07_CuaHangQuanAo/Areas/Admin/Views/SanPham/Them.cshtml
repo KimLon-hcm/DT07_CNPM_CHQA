@@ -1,51 +1,158 @@
-﻿@model DT07_CuaHangQuanAo.Models.HangHoa
+﻿@* *** THAY ĐỔI: Model của View bây giờ là SanPhamCreateViewModel *** *@
+@model DT07_CuaHangQuanAo.Models.SanPhamCreateViewModel
+
 @{
-    // Báo cho View này sử dụng Layout của Admin
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
-    ViewData["Title"] = "Thêm Hàng Mới";
+    ViewData["Title"] = "Thêm Hàng Hóa Mới";
 }
+
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">@ViewData["Title"]</h6>
     </div>
     <div class="card-body">
-        @using (Html.BeginForm("Them", "SanPham", FormMethod.Post))
+        @using (Html.BeginForm("Them", "SanPham", FormMethod.Post, new { id = "createProductForm" }))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="mb-3">
-                @Html.LabelFor(model => model.TenHang, "Tên Sản Phẩm", htmlAttributes: new { @class = "form-label" })
-                @Html.EditorFor(model => model.TenHang, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TenHang, "", new { @class = "text-danger" })
-            </div>
-            <div class="mb-3">
-                @Html.LabelFor(model => model.MoTa, "Mô tả", htmlAttributes: new {@class = "form-label"})
-                @Html.TextAreaFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-            <div class="mb-3">
-                @Html.LabelFor(model => model.IdloaiHang, "Loại hàng", htmlAttributes: new {@class = "form-label"})
-                @Html.DropDownList("IdloaiHang", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IdloaiHang, "", new {@class = "text-danger"})
-            </div>
-            <div class="mb-3">
-                @Html.LabelFor(model => model.IdthuongHieu, "Thương Hiệu", new { @class = "form-label" })
-                @Html.DropDownList("IdthuongHieu", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IdthuongHieu, "", new { @class = "text-danger" })
+
+            @* Phần thông tin chung của Hàng Hóa *@
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.TenHang, "Tên Sản Phẩm", htmlAttributes: new { @class = "form-label" })
+                        @Html.EditorFor(model => model.TenHang, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TenHang, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.MoTa, "Mô tả", htmlAttributes: new { @class = "form-label" })
+                        @Html.TextAreaFor(model => model.MoTa, 5, 1, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.IdloaiHang, "Loại hàng", htmlAttributes: new { @class = "form-label" })
+                        @Html.DropDownListFor(model => model.IdloaiHang, (SelectList)ViewBag.IdloaiHang, "--- Chọn loại hàng ---", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IdloaiHang, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.IdthuongHieu, "Thương Hiệu", new { @class = "form-label" })
+                        @Html.DropDownListFor(model => model.IdthuongHieu, (SelectList)ViewBag.IdthuongHieu, "--- Chọn thương hiệu ---", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IdthuongHieu, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="mb-3 form-check">
+                        @Html.CheckBoxFor(model => model.TrangThai, new { @class = "form-check-input" })
+                        @Html.LabelFor(model => model.TrangThai, "Kích hoạt bán", new { @class = "form-check-label" })
+                    </div>
+                </div>
             </div>
 
-            <div class="mb-3 form-check">
-                @Html.CheckBoxFor(model => model.TrangThai, new { @class = "form-check-input" })
-                @Html.LabelFor(model => model.TrangThai, "Đang bán", new { @class = "form-check-label" })
-            </div>
+            <hr />
 
-            <div class="form-group">
-                <input type="submit" value="Tạo mới" class="btn btn-primary" />
+            @* *** MỚI: Phần quản lý biến thể *** *@
+            <h4>Quản lý các phiên bản (màu sắc, kích thước)</h4>
+            <div id="bienTheContainer">
+                @* Các dòng nhập liệu biến thể sẽ được thêm vào đây bằng JavaScript *@
+            </div>
+            <button type="button" id="addBienTheButton" class="btn btn-success mt-2 mb-3">
+                <i class="fas fa-plus"></i> Thêm phiên bản
+            </button>
+
+
+            @* Phần nút bấm *@
+            <div class="form-group mt-4">
+                <input type="submit" value="Tạo mới Sản phẩm" class="btn btn-primary" />
                 <input type="reset" value="Reset" class="btn btn-warning ms-2" />
             </div>
             <div>
                 @Html.ActionLink("Quay lại Danh sách", "Index", null, new { @class = "btn btn-secondary" })
             </div>
         }
-        
     </div>
 </div>
+
+
+@* *** MỚI: Template ẩn cho một dòng biến thể (ĐÃ SỬA LỖI) *** *@
+<div id="bienTheTemplate" style="display: none;">
+    <div class="row bien-the-item mb-3 p-3 border rounded align-items-end">
+        <div class="col-md-2">
+            <label>Màu sắc</label>
+            @* THAY ĐỔI: Dùng vòng lặp để tạo options thay vì asp-items *@
+            <select name="BienThes[__INDEX__].IdmauSac" class="form-control">
+                <option value="">Chọn màu</option>
+                @if (ViewBag.IdmauSac != null)
+                {
+                    foreach (var item in (SelectList)ViewBag.IdmauSac)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-md-2">
+            <label>Kích thước</label>
+            @* THAY ĐỔI: Dùng vòng lặp để tạo options thay vì asp-items *@
+            <select name="BienThes[__INDEX__].IdkichThuoc" class="form-control">
+                <option value="">Chọn size</option>
+                @if (ViewBag.IdkichThuoc != null)
+                {
+                    foreach (var item in (SelectList)ViewBag.IdkichThuoc)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-md-2"><label>SKU (Hiệu-Loại-Màu-Size)</label><input type="text" name="BienThes[__INDEX__].Sku" class="form-control" /></div>
+        <div class="col-md-2"><label>Giá bán</label><input type="number" name="BienThes[__INDEX__].Gia" class="form-control" value="0" /></div>
+        <div class="col-md-2"><label>Số lượng tồn</label><input type="number" name="BienThes[__INDEX__].SoLuongTon" class="form-control" value="0" /></div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-danger remove-bien-the w-100">
+                <i class="fas fa-trash-alt"></i> Xóa
+            </button>
+        </div>
+    </div>
+</div>
+
+@*  Thêm Section Scripts để xử lý JavaScript *** *@
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+ 
+        console.log("View is ready, waiting for DOM to load.");
+
+        $(document).ready(function () {
+            console.log("DOM is ready. jQuery is working. Attaching click handler.");
+            
+            let bienTheIndex = 0;
+
+            // Khi nhấn nút "Thêm phiên bản"
+            $("#addBienTheButton").click(function (e) {
+                e.preventDefault();
+                
+                // Dấu hiệu 2: Kiểm tra xem sự kiện click có được kích hoạt không
+                console.log("Button '#addBienTheButton' was clicked!");
+
+                var templateHtml = $("#bienTheTemplate").html();
+                
+                // Dấu hiệu 3: Kiểm tra xem chúng ta có lấy được HTML từ template không
+                console.log("Template HTML content is:");
+                console.log(templateHtml);
+                
+                if(templateHtml && templateHtml.length > 0) {
+                    var finalHtml = templateHtml.replace(/__INDEX__/g, bienTheIndex);
+                    $("#bienTheContainer").append(finalHtml);
+                    bienTheIndex++;
+                    console.log("New variant row added successfully.");
+                } else {
+                    console.error("Failed to get HTML from #bienTheTemplate. It might be empty or missing.");
+                }
+            });
+
+        });
+    </script>
+}
+}
