@@ -1,4 +1,6 @@
-﻿
+﻿using Microsoft.AspNetCore.Http; // <-- Thêm using này
+using System.Collections.Generic; // <-- Thêm using này
+
 namespace DT07_CuaHangQuanAo.Models
 {
     public class HangHoaBienTheViewModel
@@ -9,5 +11,7 @@ namespace DT07_CuaHangQuanAo.Models
         public decimal Gia { get; set; }
         public decimal? GiaKhuyenMai { get; set; }
         public int SoLuongTon { get; set; }
+
+        public List<IFormFile> HinhAnhs { get; set; }
     }
 }
