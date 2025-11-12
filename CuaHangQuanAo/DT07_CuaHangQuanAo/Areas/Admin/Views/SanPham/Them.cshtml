@@ -11,12 +11,13 @@
         <h6 class="m-0 font-weight-bold text-primary">@ViewData["Title"]</h6>
     </div>
     <div class="card-body">
-        @using (Html.BeginForm("Them", "SanPham", FormMethod.Post, new { id = "createProductForm" }))
+        @* *** THAY ĐỔI 1: Thêm enctype="multipart/form-data" *** *@
+        @using (Html.BeginForm("Them", "SanPham", FormMethod.Post, new { id = "createProductForm", enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-            @* Phần thông tin chung của Hàng Hóa *@
+            @* Phần thông tin chung của Hàng Hóa (Giữ nguyên) *@
             <div class="row">
                 <div class="col-md-8">
                     <div class="mb-3">
@@ -49,17 +50,15 @@
 
             <hr />
 
-            @* *** MỚI: Phần quản lý biến thể *** *@
+            @* Phần quản lý biến thể (Giữ nguyên) *@
             <h4>Quản lý các phiên bản (màu sắc, kích thước)</h4>
             <div id="bienTheContainer">
-                @* Các dòng nhập liệu biến thể sẽ được thêm vào đây bằng JavaScript *@
             </div>
             <button type="button" id="addBienTheButton" class="btn btn-success mt-2 mb-3">
                 <i class="fas fa-plus"></i> Thêm phiên bản
             </button>
 
-
-            @* Phần nút bấm *@
+            @* Phần nút bấm (Giữ nguyên) *@
             <div class="form-group mt-4">
                 <input type="submit" value="Tạo mới Sản phẩm" class="btn btn-primary" />
                 <input type="reset" value="Reset" class="btn btn-warning ms-2" />
@@ -72,86 +71,95 @@
 </div>
 
 
-@* *** MỚI: Template ẩn cho một dòng biến thể *** *@
+@* *** THAY ĐỔI 2: Thêm trường upload file vào template *** *@
 <div id="bienTheTemplate" style="display: none;">
-    <div class="row bien-the-item mb-3 p-3 border rounded align-items-end">
-        <div class="col-md-2">
-            <label>Màu sắc</label>
-            <select name="BienThes[__INDEX__].IdmauSac" class="form-control">
-                <option value="">Chọn màu</option>
-                @if (ViewBag.IdmauSac != null)
-                {
-                    foreach (var item in (SelectList)ViewBag.IdmauSac)
+    <div class="bien-the-item mb-4 p-3 border rounded">
+        <div class="row align-items-end">
+            <div class="col-md-2">
+                <label>Màu sắc</label>
+                <select name="BienThes[__INDEX__].IdmauSac" class="form-control">
+                    <option value="">Chọn màu</option>
+                    @if (ViewBag.IdmauSac != null)
                     {
-                        <option value="@item.Value">@item.Text</option>
+                        foreach (var item in (SelectList)ViewBag.IdmauSac)
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
                     }
-                }
-            </select>
-            <span class="text-danger validation-error"></span>
-        </div>
-        <div class="col-md-2">
-            <label>Kích thước</label>
-            <select name="BienThes[__INDEX__].IdkichThuoc" class="form-control">
-                <option value="">Chọn size</option>
-                @if (ViewBag.IdkichThuoc != null)
-                {
-                    foreach (var item in (SelectList)ViewBag.IdkichThuoc)
+                </select>
+                <span class="text-danger validation-error"></span>
+            </div>
+            <div class="col-md-2">
+                <label>Kích thước</label>
+                <select name="BienThes[__INDEX__].IdkichThuoc" class="form-control">
+                    <option value="">Chọn size</option>
+                    @if (ViewBag.IdkichThuoc != null)
                     {
-                        <option value="@item.Value">@item.Text</option>
+                        foreach (var item in (SelectList)ViewBag.IdkichThuoc)
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
                     }
-                }
-            </select>
-            <span class="text-danger validation-error"></span>
-        </div>
-        <div class="col-md-2"><label>SKU (Hiệu-Loại-Màu-Size)</label>
-            <input type="text" name="BienThes[__INDEX__].Sku" class="form-control" />
-            <span class="text-danger validation-error"></span>
-        </div>
-
-        <div class="col-md-2"><label>Giá bán</label>
-            <input type="number" name="BienThes[__INDEX__].Gia" class="form-control" value="0" />
-            <span class="text-danger validation-error"></span>
+                </select>
+                <span class="text-danger validation-error"></span>
             </div>
-        <div class="col-md-2"><label>Số lượng tồn</label>
-            <input type="number" name="BienThes[__INDEX__].SoLuongTon" class="form-control" value="0" />
-            <span class="text-danger validation-error"></span>
+            <div class="col-md-2">
+                <label>SKU</label>
+                <input type="text" name="BienThes[__INDEX__].Sku" class="form-control" />
+                <span class="text-danger validation-error"></span>
             </div>
-        <div class="col-md-2">
-            <button type="button" class="btn btn-danger remove-bien-the w-100">
-                <i class="fas fa-trash-alt"></i> Xóa
-            </button>
+            <div class="col-md-2">
+                <label>Giá bán</label>
+                <input type="number" name="BienThes[__INDEX__].Gia" class="form-control" value="0" />
+                <span class="text-danger validation-error"></span>
+            </div>
+            <div class="col-md-2">
+                <label>Số lượng tồn</label>
+                <input type="number" name="BienThes[__INDEX__].SoLuongTon" class="form-control" value="0" />
+                <span class="text-danger validation-error"></span>
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-danger remove-bien-the w-100">
+                    <i class="fas fa-trash-alt"></i> Xóa
+                </button>
+            </div>
+        </div>
+        @* *** DÒNG MỚI: Thêm input để upload file *** *@
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <label>Hình ảnh cho phiên bản này (có thể chọn nhiều ảnh)</label>
+                <input type="file" name="BienThes[__INDEX__].HinhAnhs" class="form-control" multiple accept="image/*" />
+            </div>
         </div>
     </div>
 </div>
 
-@*  Thêm Section Scripts để xử lý JavaScript *** *@
-
+@* Phần Scripts của bạn giữ nguyên, không cần thay đổi *@
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
     <script>
- 
         console.log("View is ready, waiting for DOM to load.");
 
         $(document).ready(function () {
             console.log("DOM is ready. jQuery is working. Attaching click handler.");
-            
+
             let bienTheIndex = 0;
 
             // Khi nhấn nút "Thêm phiên bản"
             $("#addBienTheButton").click(function (e) {
                 e.preventDefault();
-                
+
                 // Dấu hiệu 2: Kiểm tra xem sự kiện click có được kích hoạt không
                 console.log("Button '#addBienTheButton' was clicked!");
 
                 var templateHtml = $("#bienTheTemplate").html();
-                
+
                 // Dấu hiệu 3: Kiểm tra xem chúng ta có lấy được HTML từ template không
                 console.log("Template HTML content is:");
                 console.log(templateHtml);
-                
+
                 if(templateHtml && templateHtml.length > 0) {
                     var finalHtml = templateHtml.replace(/__INDEX__/g, bienTheIndex);
                     $("#bienTheContainer").append(finalHtml);
@@ -235,5 +243,4 @@
 
         });
     </script>
-}
 }
